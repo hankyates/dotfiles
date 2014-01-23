@@ -41,7 +41,7 @@ packages=(
   git-core
   tree sl
   nmap telnet
-  htop
+  htop vim
 )
 
 list=()
