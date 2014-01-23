@@ -18,4 +18,4 @@
 	url = git://github.com/isaacs/nave.git
 [submodule "libs/vundle"]
 	path = libs/vundle
-	url = git@github.com:gmarik/vundle.git
+	url = git@github.com/gmarik/vundle.git
