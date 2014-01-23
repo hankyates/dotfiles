@@ -56,3 +56,9 @@ if [[ "$(type -P gem)" ]]; then
   fi
 fi
 
+# Vundle Install for vim
+if [[ "$(type -P vim)" ]]; then
+  e_header "Installing Vundle Packages"
+  vim +BundleInstall +qall
+fi
+
