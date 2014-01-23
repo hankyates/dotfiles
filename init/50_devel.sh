@@ -66,3 +66,8 @@ if [[ "$(type -P vim)" ]]; then
   vim +BundleInstall +qall
 fi
 
+# Install google chrome
+sudo apt-get install libxss1
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_i386.deb
+sudo dpkg -i google-chrome*.deb
+
