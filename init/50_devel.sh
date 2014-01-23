@@ -58,6 +58,10 @@ fi
 
 # Vundle Install for vim
 if [[ "$(type -P vim)" ]]; then
+  if [ ! -d ~/.vim/bundle ]; then
+    mkdir ~/.vim/bundle
+  fi
+  cp ~/.dotfiles/libs/vundle ~/.vim/bundle/
   e_header "Installing Vundle Packages"
   vim +BundleInstall +qall
 fi
