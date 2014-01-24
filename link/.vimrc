@@ -68,17 +68,16 @@ set completeopt=menuone,longest,preview
 set omnifunc=syntaxcomplete#Complete
 
 " Gui Options
-set guioptions+=TlLrRbB
+"set guioptions+=TlLrRbB
 set guioptions-=TlLrRbB
 
 " Command P
-let g:ctrlp_cmd = '<Leader>p'
-let g:ctrlp_map = '<c-p>'
+"let g:ctrlp_cmd = '<Leader>p'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(node_modules|git|hg|svn)$',
   \ 'file': '\v\.(exe|so|dll)$',
-  \ 'link': 'some_bad_symbolic_links',
+  \ 'link': '',
   \ }
 
 " User Mappings
