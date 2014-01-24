@@ -38,6 +38,8 @@ sudo apt-get -qq dist-upgrade
 # Install APT packages.
 packages=(
   build-essential libssl-dev
+  curl
+  chromium-browser
   git-core
   vim
 )
