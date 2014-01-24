@@ -1,35 +1,14 @@
 # Load npm_globals, add the default node into the path.
 source ~/.dotfiles/source/50_devel.sh
 
-# Install Node.js.
- if [[ "$(type -P nave)" ]]; then
-  nave_stable="$(nave stable)"
-  if [[ "$(node --version 2>/dev/null)" != "v$nave_stable" ]]; then
-    e_header "Installing Node.js $nave_stable"
-    # Install most recent stable version.
-    nave install stable >/dev/null 2>&1
-  fi
-  if [[ "$(nave ls | awk '/^default/ {print $2}')" != "$nave_stable" ]]; then
-    # Alias the stable version of node as "default".
-    nave use default stable true
-  fi
+if [[ ! "$(type -P nvm)" ]]; then
+  sh ~/.dotfiles/libs/nvm/install.sh
+  source ~/.nvm/nvm.sh
 fi
-
-# Load npm_globals, add the default node into the path, initialize rbenv.
-source ~/.dotfiles/source/50_devel.sh
-
-# Install Npm modules.
-if [[ "$(type -P npm)" ]]; then
-  e_header "Updating Npm"
-  npm update -g npm
-
-  { pushd "$(npm config get prefix)/lib/node_modules"; installed=(*); popd; } > /dev/null
-  list="$(to_install "${npm_globals[*]}" "${installed[*]}")"
-  if [[ "$list" ]]; then
-    e_header "Installing Npm modules: $list"
-    npm install -g $list
-  fi
-fi
+nvm install 0.10
+nvm alias default 0.10
+npm_globals=(grunt-cli grunt-init bower node-inspector yo forever)
+npm install -g ${npm_globals[*]}
 
 # Install Ruby.
 if [[ "$(type -P rbenv)" ]]; then
@@ -46,7 +25,7 @@ fi
 
 # Install Gems.
 if [[ "$(type -P gem)" ]]; then
-  gems=(bundler awesome_print pry lolcat)
+  gems=(bundler)
 
   list="$(to_install "${gems[*]}" "$(gem list | awk '{print $1}')")"
   if [[ "$list" ]]; then
@@ -61,7 +40,8 @@ if [[ "$(type -P vim)" ]]; then
   if [ ! -d ~/.vim/bundle ]; then
     mkdir ~/.vim/bundle
   fi
-  cp ~/.dotfiles/libs/vundle ~/.vim/bundle/
+  git clone git@github.com:gmarik/vundle.git ~/.dotfiles/libs/vundle
+  rsync -avz ~/.dotfiles/libs/vundle ~/.vim/bundle/
   e_header "Installing Vundle Packages"
   vim +BundleInstall +qall
 fi
