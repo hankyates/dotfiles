@@ -39,9 +39,7 @@ sudo apt-get -qq dist-upgrade
 packages=(
   build-essential libssl-dev
   git-core
-  tree sl
-  nmap telnet
-  htop vim
+  vim
 )
 
 list=()
