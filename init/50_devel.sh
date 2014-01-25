@@ -4,11 +4,11 @@ source ~/.dotfiles/source/50_devel.sh
 if [[ ! "$(type -P nvm)" ]]; then
   sh ~/.dotfiles/libs/nvm/install.sh
   source ~/.nvm/nvm.sh
+  nvm install 0.10
+  nvm alias default 0.10
+  npm_globals=(grunt-cli grunt-init bower node-inspector yo forever)
+  npm install -g ${npm_globals[*]}
 fi
-nvm install 0.10
-nvm alias default 0.10
-npm_globals=(grunt-cli grunt-init bower node-inspector yo forever)
-npm install -g ${npm_globals[*]}
 
 # Install Ruby.
 if [[ "$(type -P rbenv)" ]]; then

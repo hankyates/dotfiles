@@ -12,7 +12,9 @@ packages=(
   curl
   chromium-browser
   git-core
-  vim
+  vim vim-gtk
+  screen
+  python-virtualenv
 )
 
 list=()

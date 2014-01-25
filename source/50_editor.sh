@@ -1,7 +1,7 @@
 # Editing
 
 export EDITOR=$(type nano pico vi vim 2>/dev/null | sed 's/ .*$//;q')
-alias q="$EDITOR -w -z"
+alias q="$EDITOR -w"
 export VISUAL="$EDITOR"
 
 alias q.='q .'
