@@ -16,6 +16,7 @@ Bundle 'msanders/snipmate.vim.git'
 Bundle 'Raimondi/delimitMate'
 Bundle 'mattn/emmet-vim'
 Bundle 'kien/ctrlp.vim'
+Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle 'tjennings/git-grep-vim'
 Bundle 'minibufexpl.vim'
 Bundle 'L9'
@@ -30,11 +31,12 @@ augroup END
 
 " Statusline Settings
 set laststatus=2
-set statusline=%<%f\ %h%m%r%{SyntasticStatuslineFlag()}%=%-14.(%l,%c%V%)\ %P
+"set statusline=%<%f\ %h%m%r%{SyntasticStatuslineFlag()}%=%-14.(%l,%c%V%)\ %P
 
 " Text settings
 syntax enable
 set t_Co=256
+set guifont=Ubuntu\ Mono\ 14
 let g:zenburn_high_Contrast=1
 colors zenburn
 hi NonText ctermfg=7 guifg=gray
@@ -46,13 +48,17 @@ set completeopt=menuone,longest,preview
 set omnifunc=syntaxcomplete#Complete
 
 " Gui Options
-set guioptions-=TlLrRbB
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
 
 " Command P
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.git
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(node_modules|git|hg|svn)$',
-  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'dir':  'node_modules',
+  \ 'file': '\v\.(exe|so|dll|ico|png|jpg)$',
   \ 'link': '',
   \ }
 
