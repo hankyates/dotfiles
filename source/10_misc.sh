@@ -10,3 +10,8 @@ function path_remove() {
   # output the new array
   echo "${t[*]}"
 }
+
+alias vs='vagrant status'
+alias vsh='vagrant ssh'
+alias vu='vagrant up'
+alias vh='vagrant halt'

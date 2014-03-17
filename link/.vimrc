@@ -16,7 +16,8 @@ Bundle 'msanders/snipmate.vim.git'
 Bundle 'Raimondi/delimitMate'
 Bundle 'mattn/emmet-vim'
 Bundle 'kien/ctrlp.vim'
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Bundle 'heavenshell/vim-jsdoc'
+Bundle 'itchyny/lightline.vim'
 Bundle 'tjennings/git-grep-vim'
 Bundle 'minibufexpl.vim'
 Bundle 'L9'
@@ -46,6 +47,7 @@ set softtabstop=2 tabstop=2 shiftwidth=2 expandtab
 set foldmethod=indent foldlevel=99
 set completeopt=menuone,longest,preview
 set omnifunc=syntaxcomplete#Complete
+let g:jsdoc_default_mapping=0
 
 " Gui Options
 set guioptions-=m  "remove menu bar
