@@ -6,6 +6,7 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 Bundle 'jnurmine/Zenburn'
+Bundle 'nanotech/jellybeans.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-git.git'
 Bundle 'tpope/vim-surround.git'
@@ -59,7 +60,7 @@ set guioptions-=L  "remove left-hand scroll bar
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.git
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  'node_modules',
+  \ 'dir':  'node_modules|dist|build',
   \ 'file': '\v\.(exe|so|dll|ico|png|jpg)$',
   \ 'link': '',
   \ }
@@ -80,3 +81,7 @@ map <C-k> <C-w><Up>
 map <C-j> <C-w><Down>
 map <C-l> <C-w><Right>
 map <C-h> <C-w><Left>
+
+let g:lightline = {
+      \ 'colorscheme': 'jellybeans'
+      \ }
