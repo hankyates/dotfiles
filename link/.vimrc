@@ -20,6 +20,8 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'heavenshell/vim-jsdoc'
 Bundle 'itchyny/lightline.vim'
 Bundle 'tjennings/git-grep-vim'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'marijnh/tern_for_vim'
 Bundle 'minibufexpl.vim'
 Bundle 'L9'
 
@@ -40,7 +42,7 @@ syntax enable
 set t_Co=256
 set guifont=Ubuntu\ Mono\ 14
 let g:zenburn_high_Contrast=1
-colors zenburn
+colors jellybeans
 hi NonText ctermfg=7 guifg=gray
 set list listchars=tab:\T\ ,trail:.,extends:>,precedes:<
 set hls nu wrap
@@ -50,6 +52,9 @@ set completeopt=menuone,longest,preview
 set omnifunc=syntaxcomplete#Complete
 let g:jsdoc_default_mapping=0
 
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%96v.\+/
+
 " Gui Options
 set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
@@ -57,10 +62,10 @@ set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
 
 " Command P
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.git
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.git,node_modules,dist,build
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  'node_modules|dist|build',
+  \ 'dir':  '',
   \ 'file': '\v\.(exe|so|dll|ico|png|jpg)$',
   \ 'link': '',
   \ }
@@ -83,5 +88,26 @@ map <C-l> <C-w><Right>
 map <C-h> <C-w><Left>
 
 let g:lightline = {
-      \ 'colorscheme': 'jellybeans'
+      \ 'colorscheme': 'jellybeans',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive', 'filename', 'modified' ] ]
+      \ },
+      \ 'component': {
+      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+      \ },
+      \ 'component_visible_condition': {
+      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+      \ },
       \ }
+
+map <Leader>ga :Gwrite<cr>
+map <Leader>gc :Gcommit<cr>
+map <Leader>gb :Gblame<cr>
+map <Leader>gd :Gdiff<cr>
+map <Leader>gs :Gstatus<cr>
+
+set backspace=indent,eol,start
+
+ino <C-J> <c-r>=TriggerSnippet()<cr>
+snor <C-J> <esc>i<right><c-r>=TriggerSnippet()<cr>
