@@ -1,34 +1,41 @@
 set nocompatible
 filetype off                   " required!
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=$HOME/.vim/bundle/Vundle.vim/
+call vundle#begin('$HOME/.vim/bundle/')
 
-Bundle 'gmarik/vundle'
-Bundle 'jnurmine/Zenburn'
-Bundle 'nanotech/jellybeans.vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-git.git'
-Bundle 'tpope/vim-surround.git'
-Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'SirVer/ultisnips'
-Bundle 'honza/vim-snippets'
-"Bundle 'msanders/snipmate.vim.git'
-Bundle 'Raimondi/delimitMate'
-Bundle 'mattn/emmet-vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'heavenshell/vim-jsdoc'
-Bundle 'itchyny/lightline.vim'
-Bundle 'tjennings/git-grep-vim'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'marijnh/tern_for_vim'
-Bundle 'mxw/vim-jsx'
-Bundle 'pangloss/vim-javascript'
-"Bundle 'minibufexpl.vim'
-Bundle 'L9'
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'jnurmine/Zenburn'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-git.git'
+Plugin 'tpope/vim-surround.git'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+"Plugin 'msanders/snipmate.vim.git'
+Plugin 'Raimondi/delimitMate'
+Plugin 'mattn/emmet-vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'heavenshell/vim-jsdoc'
+Plugin 'itchyny/lightline.vim'
+Plugin 'tjennings/git-grep-vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'marijnh/tern_for_vim'
+Plugin 'mxw/vim-jsx'
+Plugin 'pangloss/vim-javascript'
+Plugin 'lepture/vim-jinja'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'editorconfig/editorconfig-vim'
+"Plugin 'Quramy/tsuquyomi'
+Plugin 'leafgarland/typescript-vim'
+"Plugin 'nvie/vim-pyunit'
+"Plugin 'minibufexpl.vim'
+Plugin 'L9'
 
+call vundle#end()
 filetype plugin indent on
 
 augroup AutoReloadVimRC
@@ -44,7 +51,7 @@ set laststatus=2
 " Text settings
 syntax enable
 set t_Co=256
-set guifont=Ubuntu\ Mono\ 14
+set guifont=Consolas:h14
 let g:zenburn_high_Contrast=1
 colors jellybeans
 hi NonText ctermfg=7 guifg=gray
@@ -57,7 +64,7 @@ set omnifunc=syntaxcomplete#Complete
 let g:jsdoc_default_mapping=0
 
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%96v.\+/
+match OverLength /\%120v.\+/
 
 " Gui Options
 set guioptions-=m  "remove menu bar
@@ -79,8 +86,14 @@ map <Leader><Tab> :NERDTreeToggle<CR>
 map <Leader>\ :! 
 map <Leader>aa :GitGrep 
 map <Leader>as :GitGrep <cword><CR>
+map <Leader>[ :colors jellybeans<CR>
 map <Leader>] :colors morning<CR>
-map <Leader>[ :colors zenburn<CR>
+map <Leader>gt :YcmCompleter GetType<CR>
+map <Leader>fi :YcmCompleter FixIt<CR>
+map <Leader>dec :YcmCompleter GoToDeclaration<CR>
+map <Leader>def :YcmCompleter GoToDefinition<CR>
+map <Leader>t :YcmCompleter GoToType<CR>
+map <Leader>ref :YcmCompleter GoToReferences<CR>
 
 let g:miniBufExplSplitBelow=0
 let g:miniBufExplMaxSize=0
@@ -120,6 +133,16 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " Macros
-let @f='ifunctionWdt{'
-map <Leader>cl :%s/class=/className=/gc<cr>
-map <Leader>tt :%s/<%=\ name %>/
+" letder>cl :%s/class=/className=/gc<cr>
+map <Leader>tt :%s/<%=\ name %>/ @f='ifunction
+set ffs=dos,unix
+set encoding=utf-8
+set softtabstop=2 tabstop=2 shiftwidth=2 expandtab
+let g:ycm_min_num_of_chars_for_completion = 2
+let g:ycm_auto_trigger = 1
+let g:ycm_python_binary_path = 'python'
+let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_python_pylint_args = '--rcfile=~\.pylintrc'
+set noswapfile
+set nobackup
+set nowritebackup
